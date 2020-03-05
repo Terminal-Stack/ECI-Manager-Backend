@@ -17,15 +17,21 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ServiciosEstudiantesImpl implements ServiciosEstudiantes{
-
+    private List<Estudiante> estudiantes;
     @Override
     public List<Estudiante> getEstudiantes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return estudiantes;
     }
 
     @Override
-    public Estudiante getEstudianteById(int carnet) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Estudiante getEstudianteById(int carnet) {   
+        Estudiante res=null;
+        for(Estudiante e: estudiantes){
+            if(e.getCarnet()==carnet){
+                res=e;
+            }
+        }
+        return res;
     }
     @Override
     public List<Notas> consultarNotas(int carnet){
