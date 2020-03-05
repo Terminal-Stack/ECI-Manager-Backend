@@ -1,6 +1,8 @@
 
 package edu.eci.ieti.Model;
 
+import java.util.Date;
+
 public class Factura{
     private int id;
     private int valor;
