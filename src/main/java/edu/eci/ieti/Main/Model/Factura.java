@@ -1,5 +1,5 @@
 
-package edu.eci.ieti.Model;
+package edu.eci.ieti.Main.Model;
 
 import java.util.Date;
 
