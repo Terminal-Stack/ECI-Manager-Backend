@@ -1,5 +1,4 @@
-package edu.eci.ieti.Model;
-
+package edu.eci.ieti.Main.Model;
 
 public class Estudiante{
     private int carnet;
