@@ -1,5 +1,9 @@
+package edu.eci.ieti.Main.controllers;
 
 
+
+import edu.eci.ieti.Main.Model.Estudiante;
+import edu.eci.ieti.Main.Services.ServiciosEstudiantes;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,16 +15,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 public class EstudianteController{
     @Autowired
-    private ServiciosEstudiante servEstudiante;
+    private ServiciosEstudiantes servEstudiante;
 
     @RequestMapping(value="estudiantes/{estudianteID}", method =RequestMethod.GET)
-    public ResponseEntity<Estudiante> getById(@Pathvariable String estudianteID){
-        Estudiante estudiante = servEstudiante.getById(estudianteID);
-        return new ResponseEntity<>(task,HttpStatus.OK);
+    public ResponseEntity<Estudiante> getEstudianteById(@PathVariable int estudianteID){
+        Estudiante estudiante = servEstudiante.getEstudianteById(estudianteID);
+        return new ResponseEntity<>(estudiante,HttpStatus.OK);
     }
     @RequestMapping(value = "/estudiantes", method = RequestMethod.GET)
-    public ResponseEntity<List<Estudiante>> getEstudiantesList() {
-        List<Estudiante> estudiantes = servEstudiante.getEstudiantesList();
+    public ResponseEntity<List<Estudiante>> getEstudiantes() {
+        List<Estudiante> estudiantes = servEstudiante.getEstudiantes();
         return new ResponseEntity<>(estudiantes, HttpStatus.OK);
     }
 
