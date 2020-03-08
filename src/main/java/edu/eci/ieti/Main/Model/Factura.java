@@ -7,14 +7,20 @@ public class Factura{
     private int valor;
     private String descripcion;
     private Date fecha;
+    private Estudiante estudiante; 
 
-    public Factura(int id, int valor, String descripcion, Date fecha) {
+    public Factura(int id, int valor, String descripcion, Date fecha, Estudiante estudiante) {
         this.id = id;
         this.valor = valor;
         this.descripcion = descripcion;
         this.fecha = fecha;
+        this.estudiante = estudiante;
     }
 
+    public Estudiante getEstudiante() {
+        return estudiante;
+    }
+    
     public int getId() {
         return id;
     }
@@ -46,4 +52,10 @@ public class Factura{
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
+    public void setEstudiante(Estudiante estudiante) {
+        this.estudiante = estudiante;
+    }
+    
+    
 }
