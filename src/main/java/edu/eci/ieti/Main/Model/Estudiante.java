@@ -1,22 +1,52 @@
 package edu.eci.ieti.Main.Model;
 
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class Estudiante{
+    @Id
+    private String id;
     private int carnet;
     private String correo;
     private String nombre;
     private String password;
     private int documento;
     private String programa;
-    private Notas notas;
+    private ArrayList<Notas> notas=new ArrayList<Notas>();
 
-
-    public Estudiante(int carnet, String correo, String nombre, String password, int documento, String programa) {
+    public Estudiante(String id, int carnet, String correo, String nombre, String password, int documento, String programa, ArrayList<Notas> notas) {
+        this.id = id;
         this.carnet = carnet;
         this.correo = correo;
         this.nombre = nombre;
         this.password = password;
         this.documento = documento;
         this.programa = programa;
+        this.notas = notas;
+    }
+    public Estudiante() {
+    }
+    public void agregarNota(Notas nota){
+        notas.add(nota);
+    }
+    public Notas consultarNotaPorMateria(String n){
+        Notas res=null;
+        for(int i=0;i<notas.size();i++){
+            if(n.equals(notas.get(i).getMateria())){
+                res=notas.get(i);
+            }
+        }
+        return res;
+    }
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public int getCarnet() {
@@ -43,7 +73,7 @@ public class Estudiante{
         return programa;
     }
 
-    public Notas getNotas() {
+    public ArrayList<Notas> getNotas() {
         return notas;
     }
 
@@ -71,7 +101,7 @@ public class Estudiante{
         this.programa = programa;
     }
 
-    public void setNotas(Notas notas) {
+    public void setNotas(ArrayList<Notas> notas) {
         this.notas = notas;
     }
 }

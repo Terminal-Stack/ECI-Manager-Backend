@@ -20,7 +20,7 @@ public class NoticiaController{
 
    
     @RequestMapping(value = "/noticias", method = RequestMethod.GET)
-    public ResponseEntity<Noticia> getById(@PathVariable int id) {
+    public ResponseEntity<Noticia> getById(@PathVariable String id) {
         Noticia noticias = servNoticias.getById(id);
         return new ResponseEntity<>(noticias,HttpStatus.OK);
         

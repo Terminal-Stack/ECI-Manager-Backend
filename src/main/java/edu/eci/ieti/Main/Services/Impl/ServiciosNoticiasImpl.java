@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 public class ServiciosNoticiasImpl implements ServiciosNoticias{
     public List<Noticia> noticias;
     @Override
-    public Noticia getById(int id) {
+    public Noticia getById(String id) {
         Noticia res=null;
         for(Noticia e:noticias){
             if(e.getId()==id){

@@ -7,6 +7,7 @@ package edu.eci.ieti.Main.Services;
 
 import edu.eci.ieti.Main.Model.Estudiante;
 import edu.eci.ieti.Main.Model.Notas;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,5 +17,6 @@ import java.util.List;
 public interface ServiciosEstudiantes {
     public List<Estudiante> getEstudiantes();
     public Estudiante getEstudianteById(int carnet);
-    public List<Notas> consultarNotas(int carnet);
+    public Notas consultarNotasPorMateria(String idEstu,String mate);
+    public ArrayList<Notas> consultarNotas(String idEstu);
 }
