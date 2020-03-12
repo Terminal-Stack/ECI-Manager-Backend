@@ -1,15 +1,19 @@
 package edu.eci.ieti.Main.Model;
 
 import java.util.Date;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document
 public class Factura{
-    private int id;
+    @Id
+    private String id;
     private int valor;
     private String descripcion;
     private Date fecha;
     private Estudiante estudiante; 
 
-    public Factura(int id, int valor, String descripcion, Date fecha, Estudiante estudiante) {
+    public Factura(String id, int valor, String descripcion, Date fecha, Estudiante estudiante) {
         this.id = id;
         this.valor = valor;
         this.descripcion = descripcion;
@@ -21,7 +25,7 @@ public class Factura{
         return estudiante;
     }
     
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -37,7 +41,7 @@ public class Factura{
         return fecha;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

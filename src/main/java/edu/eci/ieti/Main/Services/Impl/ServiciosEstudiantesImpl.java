@@ -7,8 +7,11 @@ package edu.eci.ieti.Main.Services.Impl;
 
 import edu.eci.ieti.Main.Model.Estudiante;
 import edu.eci.ieti.Main.Model.Notas;
+import edu.eci.ieti.Main.Repository.EstudianteRepository;
 import edu.eci.ieti.Main.Services.ServiciosEstudiantes;
+import java.util.ArrayList;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,6 +20,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ServiciosEstudiantesImpl implements ServiciosEstudiantes{
+    @Autowired
+    EstudianteRepository er;
     private List<Estudiante> estudiantes;
     @Override
     public List<Estudiante> getEstudiantes() {
@@ -34,8 +39,31 @@ public class ServiciosEstudiantesImpl implements ServiciosEstudiantes{
         return res;
     }
     @Override
-    public List<Notas> consultarNotas(int carnet){
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Notas> consultarNotas(String idEstu){
+        Estudiante temp=null;
+        for(Estudiante e: estudiantes){
+            if(idEstu.equals(e.getId())){
+                temp=e;
+            }
+        }
+        return temp.getNotas();
+    }
+
+    @Override
+    public Notas consultarNotasPorMateria(String idEstu, String mate) {
+        Estudiante temp=null;
+        for(Estudiante e: estudiantes){
+            if(idEstu.equals(e.getId())){
+                temp=e;
+            }
+        }
+        Notas res=null;
+        for(Notas n:temp.getNotas()){
+            if(n.getMateria().equals(mate)){
+                res=n;
+            }
+        }
+        return res;
     }
 
    

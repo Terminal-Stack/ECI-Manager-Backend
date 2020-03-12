@@ -1,9 +1,13 @@
 package edu.eci.ieti.Main.Model;
 
 import java.util.Date;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document
 public class Noticia{
-    private int id;
+    @Id
+    private String id;
     private String url;
     private String titulo;
     private String contenido;
@@ -11,7 +15,7 @@ public class Noticia{
     private String imagen;
     private String autor;
 
-    public Noticia(int id, String url, String titulo, String contenido, Date fechaPublicacion, String imagen, String autor) {
+    public Noticia(String id, String url, String titulo, String contenido, Date fechaPublicacion, String imagen, String autor) {
         this.id = id;
         this.url = url;
         this.titulo = titulo;
@@ -21,7 +25,7 @@ public class Noticia{
         this.autor = autor;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -49,7 +53,7 @@ public class Noticia{
         return autor;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

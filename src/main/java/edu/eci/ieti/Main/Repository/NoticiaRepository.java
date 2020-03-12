@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.eci.ieti.Main.Services;
+package edu.eci.ieti.Main.Repository;
 
 import edu.eci.ieti.Main.Model.Noticia;
-
+import org.springframework.data.mongodb.repository.MongoRepository;
 /**
  *
- * @author andres.rodriguez-de
+ * @author anrodriguez
  */
-public interface ServiciosNoticias {
-    public Noticia getById(String id);
+public interface NoticiaRepository  extends MongoRepository<Noticia,String>{
+    
 }
