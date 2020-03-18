@@ -16,6 +16,4 @@ import org.springframework.stereotype.Service;
 @Service
 public interface NotasPersistence {
     List<Notas> getNotasByStudent(int studentId);
-    List<Notas> getNotasByStudentSemester(int studentId,int semestre);
-    List<Notas> getNotasDeMateria(int studentId, String materiaS);
 }
