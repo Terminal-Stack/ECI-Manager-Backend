@@ -27,7 +27,7 @@ public class FacturaController {
             return new ResponseEntity<>(servFactura.getAllFacturas(),HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(FacturaController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error bla bla bla", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("No fue posible traer todas la facturas", HttpStatus.FORBIDDEN);
         }
     }
 
@@ -37,7 +37,7 @@ public class FacturaController {
             return new ResponseEntity<>(servFactura.getFacturaById(facturaId),HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(FacturaController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error bla bla bla", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("No fue posible traer la factura con ese identificador", HttpStatus.FORBIDDEN);
         }
     }
 
@@ -47,7 +47,7 @@ public class FacturaController {
             return new ResponseEntity<>(servFactura.getFacturaByStudentId(estudianteId),HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(FacturaController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error bla bla bla", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("No fue posible traer todas la facturas de este estudiante", HttpStatus.FORBIDDEN);
         }
     }
 

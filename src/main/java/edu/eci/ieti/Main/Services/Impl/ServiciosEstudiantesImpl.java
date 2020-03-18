@@ -23,6 +23,7 @@ public class ServiciosEstudiantesImpl implements ServiciosEstudiantes{
     @Autowired
     EstudianteRepository er;
     private List<Estudiante> estudiantes;
+    
     @Override
     public List<Estudiante> getEstudiantes() {
         return estudiantes;
@@ -38,7 +39,7 @@ public class ServiciosEstudiantesImpl implements ServiciosEstudiantes{
         }
         return res;
     }
-    @Override
+    /**@Override
     public ArrayList<Notas> consultarNotas(String idEstu){
         Estudiante temp=null;
         for(Estudiante e: estudiantes){
@@ -64,7 +65,7 @@ public class ServiciosEstudiantesImpl implements ServiciosEstudiantes{
             }
         }
         return res;
-    }
+    }*/
 
    
    
