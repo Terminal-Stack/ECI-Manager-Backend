@@ -5,17 +5,15 @@
  */
 package edu.eci.ieti.Main.Services;
 
-import edu.eci.ieti.Main.Model.Factura;
+import edu.eci.ieti.Main.Model.Notas;
 import java.util.List;
-import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Daniel Felipe Rodriguez Villalba
  */
-public interface ServiciosFactura {
-    public List<Factura> getAllFacturas();
-    public Factura getFacturaById(String idFactura);
-    public List<Factura> getFacturaByStudentId(int idStudent);
-    
+public interface ServiciosNotas {
+    List<Notas> getNotasByStudent(int studentId);
+    List<Notas> getNotasByStudentSemester(int studentId,int semestre);
+    List<Notas> getNotasDeMateria(int studentId, String materiaS);
 }

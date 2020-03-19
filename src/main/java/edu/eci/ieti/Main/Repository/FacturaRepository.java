@@ -11,6 +11,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  *
  * @author anrodriguez
  */
-public interface FacturaRepoditory  extends MongoRepository<Factura,String>{
+public interface FacturaRepository  extends MongoRepository<Factura,String>{
     
 }

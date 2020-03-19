@@ -17,6 +17,8 @@ import java.util.List;
 public interface ServiciosEstudiantes {
     public List<Estudiante> getEstudiantes();
     public Estudiante getEstudianteById(int carnet);
-    public Notas consultarNotasPorMateria(String idEstu,String mate);
-    public ArrayList<Notas> consultarNotas(String idEstu);
+    public Estudiante agregarEstudiante(Estudiante e);
+    public Estudiante UpdateEstudiante(Estudiante e);
+    public void removeEstudiante(int carnet);
+    public Estudiante getByCorreo(String correo);
 }
