@@ -6,6 +6,7 @@
 package edu.eci.ieti.Main.Services;
 
 import edu.eci.ieti.Main.Model.Noticia;
+import org.springframework.stereotype.Service;
 
 /**
  *

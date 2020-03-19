@@ -13,14 +13,16 @@ import edu.eci.ieti.Persistence.NotasPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author danie
  */
+@Service
 public class ServiciosNotasImpl implements ServiciosNotas{
     
-    @Autowired
+    //@Autowired
     NotasPersistence notasRp = null;
     
     @Autowired

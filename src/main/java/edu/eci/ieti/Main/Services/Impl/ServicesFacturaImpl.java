@@ -10,14 +10,16 @@ import edu.eci.ieti.Main.Services.ServiciosFactura;
 import edu.eci.ieti.Persistence.FacturaPersistence;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author danie
  */
+@Service
 public class ServicesFacturaImpl implements ServiciosFactura{
     
-    @Autowired
+    //@Autowired
     FacturaPersistence facturaPersistence = null ;
 
     @Override
@@ -26,7 +28,7 @@ public class ServicesFacturaImpl implements ServiciosFactura{
     }
 
     @Override
-    public Factura getFacturaById(int idFactura) {
+    public Factura getFacturaById(String idFactura) {
         return facturaPersistence.getFacturaById(idFactura);
     }
 
