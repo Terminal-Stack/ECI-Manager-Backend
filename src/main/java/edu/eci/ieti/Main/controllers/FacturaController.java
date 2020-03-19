@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 @RequestMapping(value = "/Facturas")
 public class FacturaController {
     @Autowired
-    private ServiciosFactura servFactura;
+    private ServiciosFactura servFactura= null;
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> getAllFacturas() {

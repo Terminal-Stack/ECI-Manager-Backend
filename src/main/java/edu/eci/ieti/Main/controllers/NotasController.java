@@ -1,28 +1,55 @@
-package edu.eci.ieti.Main.controllers;
-
-
-import edu.eci.ieti.Main.Model.Estudiante;
 import edu.eci.ieti.Main.Model.Noticia;
-import edu.eci.ieti.Main.Services.ServiciosEstudiantes;
-import edu.eci.ieti.Main.Services.ServiciosNoticias;
-import java.util.List;
+import edu.eci.ieti.Main.Services.ServiciosFactura;
+import edu.eci.ieti.Main.Services.ServiciosNotas;
+import edu.eci.ieti.Main.controllers.FacturaController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping(value = "/Notas")
-public class NotasController{
+public class NotasController {
+    
     @Autowired
-    private ServiciosNotas servNotas;
-    @RequestMapping(value = "/notas", method = RequestMethod.GET)
-    public ResponseEntity<Notas> getById(@PathVariable String id) {
-        Notas notas = servNoticias.getById(id);
-        return new ResponseEntity<>(noticias,HttpStatus.OK);
+    private ServiciosNotas servNotas = null;
+    
+    
+    @RequestMapping(method = RequestMethod.GET, path ="/{estudianteId}")
+    public ResponseEntity<?> getNotasById(@PathVariable int estudianteId) {
+        try {
+            return new ResponseEntity<>(servNotas.getNotasByStudent(estudianteId),HttpStatus.OK);
+        } catch (Exception ex) {
+            Logger.getLogger(FacturaController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("No fue posible traer las notas de ese estudiante", HttpStatus.FORBIDDEN);
+        }
     }
+    
+    @RequestMapping(method = RequestMethod.GET, path ="/{estudianteId}/{semester}")
+    public ResponseEntity<?> getNotasByStudentSemester(@PathVariable int estudianteId,  @PathVariable int semester) {
+        try {
+            return new ResponseEntity<>(servNotas.getNotasByStudentSemester(estudianteId, semester),HttpStatus.OK);
+        } catch (Exception ex) {
+            Logger.getLogger(FacturaController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("No fue posible traer las notas del semestre de ese estudiante", HttpStatus.FORBIDDEN);
+        }
+    }
+    
+    @RequestMapping(method = RequestMethod.GET, path ="/{estudianteId}/{materia}")
+    public ResponseEntity<?> getNotasDeMateria(@PathVariable int estudianteId,  @PathVariable String materia) {
+        try {
+            return new ResponseEntity<>(servNotas.getNotasDeMateria(estudianteId, materia),HttpStatus.OK);
+        } catch (Exception ex) {
+            Logger.getLogger(FacturaController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("No fue posible traer las notas del semestre de ese estudiante", HttpStatus.FORBIDDEN);
+        }
+    }
+    
 }
