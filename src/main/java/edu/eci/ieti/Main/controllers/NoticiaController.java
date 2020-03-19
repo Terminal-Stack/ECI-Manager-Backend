@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
+@RestController
+@RequestMapping(value = "/Noticias")
 public class NoticiaController{
     @Autowired
     private ServiciosNoticias servNoticias;
@@ -23,6 +26,5 @@ public class NoticiaController{
     public ResponseEntity<Noticia> getById(@PathVariable String id) {
         Noticia noticias = servNoticias.getById(id);
         return new ResponseEntity<>(noticias,HttpStatus.OK);
-        
     }
 }
