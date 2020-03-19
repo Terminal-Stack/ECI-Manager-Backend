@@ -32,7 +32,7 @@ public class FacturaController {
     }
 
     @RequestMapping(method = RequestMethod.GET, path ="/{facturaId}")
-    public ResponseEntity<?> getFacturaById(@PathVariable int facturaId) {
+    public ResponseEntity<?> getFacturaById(@PathVariable String facturaId) {
         try {
             return new ResponseEntity<>(servFactura.getFacturaById(facturaId),HttpStatus.OK);
         } catch (Exception ex) {

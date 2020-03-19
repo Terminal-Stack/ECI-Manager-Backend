@@ -13,10 +13,9 @@ import org.springframework.stereotype.Service;
  *
  * @author Daniel Felipe Rodriguez Villalba
  */
-@Service
 public interface ServiciosFactura {
     public List<Factura> getAllFacturas();
-    public Factura getFacturaById(int idFactura);
+    public Factura getFacturaById(String idFactura);
     public List<Factura> getFacturaByStudentId(int idStudent);
     
 }
