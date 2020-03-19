@@ -6,6 +6,7 @@
 package edu.eci.ieti.Main.Services.Impl;
 
 import edu.eci.ieti.Main.Model.Factura;
+import edu.eci.ieti.Main.Repository.FacturaRepository;
 import edu.eci.ieti.Main.Services.ServiciosFactura;
 import edu.eci.ieti.Persistence.FacturaPersistence;
 import java.util.List;
@@ -19,22 +20,27 @@ import org.springframework.stereotype.Service;
 @Service
 public class ServicesFacturaImpl implements ServiciosFactura{
     
-    //@Autowired
-    FacturaPersistence facturaPersistence = null ;
+    @Autowired
+    FacturaRepository fr = null ;
 
     @Override
     public List<Factura> getAllFacturas() {
-        return facturaPersistence.getAllFacturas();
+        return fr.findAll();
     }
 
     @Override
     public Factura getFacturaById(String idFactura) {
         return facturaPersistence.getFacturaById(idFactura);
+        List<Factura> facturas = fr.findAll();
+        Factura res=null;
+        for(Factura f:facturas){
+            if(f.getId().equals(idFactura)){
+                res=f;
+            }
+        }
+        return res;
     }
 
-    @Override
-    public List<Factura> getFacturaByStudentId(int idStudent) {
-        return getFacturaByStudentId(idStudent);
-    }
+  
     
 }
