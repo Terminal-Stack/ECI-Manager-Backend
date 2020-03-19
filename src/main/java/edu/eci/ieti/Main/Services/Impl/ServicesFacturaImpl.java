@@ -30,6 +30,7 @@ public class ServicesFacturaImpl implements ServiciosFactura{
 
     @Override
     public Factura getFacturaById(String idFactura) {
+        return facturaPersistence.getFacturaById(idFactura);
         List<Factura> facturas = fr.findAll();
         Factura res=null;
         for(Factura f:facturas){
@@ -40,9 +41,6 @@ public class ServicesFacturaImpl implements ServiciosFactura{
         return res;
     }
 
-    @Override
-    public List<Factura> getFacturaByStudentId(int idStudent) {
-        return getFacturaByStudentId(idStudent);
-    }
+  
     
 }

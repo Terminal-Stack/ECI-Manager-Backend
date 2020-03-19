@@ -16,6 +16,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface FacturaPersistence {
     public List<Factura> getAllFacturas();
-    public Factura getFacturaById(int idFactura);
+    public Factura getFacturaById(String idFactura);
     public List<Factura> getFacturaByStudentId(int idStudent);
 }

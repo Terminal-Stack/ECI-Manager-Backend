@@ -7,6 +7,7 @@ package edu.eci.ieti.Main.Services;
 
 import edu.eci.ieti.Main.Model.Notas;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 /**
  *
