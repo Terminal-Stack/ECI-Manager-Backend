@@ -12,54 +12,53 @@ public class Invoice {
     private Integer value;
     private String description;
     private Date date;
-    private Student student;
+    private Long studentId;
 
-    public Invoice(String id, Integer value, String description, Date date, Student student) {
+    public Invoice(String id, Integer value, String description, Date date, Long studentId) {
         this.id = id;
         this.value = value;
         this.description = description;
         this.date = date;
-        this.student = student;
-    }
-
-    public Student getStudent() {
-        return student;
+        this.studentId = studentId;
     }
 
     public String getId() {
         return id;
     }
 
-    public Integer getValue() {
-        return value;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Integer getValue() {
+        return value;
     }
 
     public void setValue(Integer value) {
         this.value = value;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Date getDate() {
+        return date;
     }
 
     public void setDate(Date date) {
         this.date = date;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public Long getStudentId() {
+        return studentId;
     }
 
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
+    }
 }
