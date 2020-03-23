@@ -12,17 +12,18 @@ public class Grades {
     private Integer semester;
     private Integer term;
     private Double grade;
-    private Student student;
+    private Long studentId;
 
     public Grades() {
     }
 
-    public Grades(String id, int semester, String subject, Integer term, Double grade) {
+    public Grades(String id, int semester, String subject, Integer term, Double grade, Long studentId) {
         this.id = id;
         this.semester = semester;
         this.subject = subject;
         this.term = term;
         this.grade = grade;
+        this.studentId = studentId;
     }
 
     public String getId() {
@@ -65,11 +66,11 @@ public class Grades {
         this.grade = grade;
     }
 
-    public Student getStudent() {
-        return student;
+    public Long getStudentId() {
+        return studentId;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
     }
 }
