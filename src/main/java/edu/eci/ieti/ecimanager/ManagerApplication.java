@@ -1,6 +1,7 @@
-package edu.eci.ieti.Main;
+package edu.eci.ieti.ecimanager;
 
 import java.util.Collections;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
