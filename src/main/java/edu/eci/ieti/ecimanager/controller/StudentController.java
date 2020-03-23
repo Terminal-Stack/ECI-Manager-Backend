@@ -7,10 +7,11 @@ import edu.eci.ieti.ecimanager.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,6 +39,15 @@ public class StudentController {
         Student student = studentRepository.findByCollegeId(id).orElseThrow(() -> new StudentNotFoundException(id));
 
         return studentRepresentationModelAssembler.toModel(student);
+    }
+
+    @PostMapping
+    public ResponseEntity<?> add(@RequestBody Student newStudent) throws URISyntaxException {
+        EntityModel<Student> entityModel = studentRepresentationModelAssembler
+                .toModel(studentRepository.insert(newStudent));
+
+        return ResponseEntity.created(new URI(entityModel.getRequiredLink("self").expand().getHref()))
+                .body(entityModel);
     }
 
 }

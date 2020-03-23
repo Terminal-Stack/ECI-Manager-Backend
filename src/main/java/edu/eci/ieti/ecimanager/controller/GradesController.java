@@ -15,6 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -67,6 +69,15 @@ public class GradesController {
         Grades grades = gradesRepository.findByStudentIdAndSubject(studentId, subject).orElseThrow(() -> new SubjectNotFoundInStudentException(studentId, subject));
 
         return gradesRepresentationModelAssembler.toModel(grades);
+    }
+
+    @PostMapping
+    public ResponseEntity<?> add(@RequestBody Grades newGrades) throws URISyntaxException {
+        EntityModel<Grades> entityModel = gradesRepresentationModelAssembler
+                .toModel(gradesRepository.insert(newGrades));
+
+        return ResponseEntity.created(new URI(entityModel.getRequiredLink("self").expand().getHref()))
+                .body(entityModel);
     }
 
 }

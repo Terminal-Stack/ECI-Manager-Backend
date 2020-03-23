@@ -13,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -55,6 +57,15 @@ public class InvoiceController {
                 .map(invoiceRepresentationModelAssembler::toModel).collect(Collectors.toList());
 
         return new CollectionModel<>(invoices, linkTo(InvoiceController.class).withSelfRel());
+    }
+
+    @PostMapping
+    public ResponseEntity<?> add(@RequestBody Invoice newInvoice) throws URISyntaxException {
+        EntityModel<Invoice> entityModel = invoiceRepresentationModelAssembler
+                .toModel(invoiceRepository.insert(newInvoice));
+
+        return ResponseEntity.created(new URI(entityModel.getRequiredLink("self").expand().getHref()))
+                .body(entityModel);
     }
 
 }
