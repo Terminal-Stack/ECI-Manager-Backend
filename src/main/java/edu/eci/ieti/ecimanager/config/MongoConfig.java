@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.eci.ieti.Main.Config;
+package edu.eci.ieti.ecimanager.config;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
@@ -18,7 +18,7 @@ import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
  * @author anrodriguez
  */
 @Configuration
-public class Mongoconfig {
+public class MongoConfig {
 
     @Bean
     public MongoDbFactory mongoDbFactory() throws Exception {
