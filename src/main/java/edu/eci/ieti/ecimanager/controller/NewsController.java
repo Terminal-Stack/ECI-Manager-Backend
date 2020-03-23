@@ -5,12 +5,15 @@ import edu.eci.ieti.ecimanager.exception.NewsNotFoundException;
 import edu.eci.ieti.ecimanager.model.News;
 import edu.eci.ieti.ecimanager.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.repository.ExistsQuery;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -35,10 +38,20 @@ public class NewsController {
         return new CollectionModel<>(news, linkTo(NewsController.class).withSelfRel());
     }
 
-    @GetMapping("/{id}")
-    public EntityModel<News> getById(@PathVariable String id) {
-        News news = newsRepository.findById(id).orElseThrow(() -> new NewsNotFoundException(id));
+    @GetMapping("/{url}")
+    public EntityModel<News> getById(@PathVariable String url) {
+        News news = newsRepository.findByUrl(url).orElseThrow(() -> new NewsNotFoundException(url));
 
         return newsRepresentationModelAssembler.toModel(news);
     }
+
+    @PostMapping
+    public ResponseEntity<?> add(@RequestBody News newNews) throws URISyntaxException {
+        EntityModel<News> entityModel = newsRepresentationModelAssembler
+                .toModel(newsRepository.insert(newNews));
+
+        return ResponseEntity.created(new URI(entityModel.getRequiredLink("self").expand().getHref()))
+                .body(entityModel);
+    }
+
 }
