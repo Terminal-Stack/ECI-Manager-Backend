@@ -34,9 +34,9 @@ public class StudentController {
         return new CollectionModel<>(students, linkTo(StudentController.class).withSelfRel());
     }
 
-    @GetMapping("/{id}")
-    public EntityModel<Student> findByCollegeId(@PathVariable Long id) {
-        Student student = studentRepository.findByCollegeId(id).orElseThrow(() -> new StudentNotFoundException(id));
+    @GetMapping("/{collegeId}")
+    public EntityModel<Student> findByCollegeId(@PathVariable Long collegeId) {
+        Student student = studentRepository.findById(collegeId).orElseThrow(() -> new StudentNotFoundException(collegeId));
 
         return studentRepresentationModelAssembler.toModel(student);
     }

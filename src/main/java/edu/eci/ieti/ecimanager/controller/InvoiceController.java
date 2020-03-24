@@ -52,7 +52,7 @@ public class InvoiceController {
 
     @GetMapping("/{studentId}")
     public CollectionModel<EntityModel<Invoice>> findByStudentId(@PathVariable Long studentId) {
-        studentRepository.findByCollegeId(studentId).orElseThrow(() -> new StudentNotFoundException(studentId));
+        studentRepository.findById(studentId).orElseThrow(() -> new StudentNotFoundException(studentId));
         List<EntityModel<Invoice>> invoices = invoiceRepository.findByStudentId(studentId).stream()
                 .map(invoiceRepresentationModelAssembler::toModel).collect(Collectors.toList());
 

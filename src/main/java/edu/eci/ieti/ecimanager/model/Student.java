@@ -3,10 +3,9 @@ package edu.eci.ieti.ecimanager.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+@Document(collection = "students")
 public class Student {
     @Id
-    private String id;
     private Long collegeId;
     private Long personalId;
     private String email;
@@ -14,8 +13,7 @@ public class Student {
     private String name;
     private String faculty;
 
-    public Student(String id, Long collegeId, String email, String name, String password, Long personalId, String faculty) {
-        this.id = id;
+    public Student(Long collegeId, String email, String name, String password, Long personalId, String faculty) {
         this.collegeId = collegeId;
         this.personalId = personalId;
         this.email = email;
@@ -25,14 +23,6 @@ public class Student {
     }
 
     public Student() {
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public Long getCollegeId() {

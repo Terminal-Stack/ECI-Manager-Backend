@@ -3,8 +3,8 @@ package edu.eci.ieti.ecimanager.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
-public class Grades {
+@Document(collection = "grades")
+public class Grade {
 
     @Id
     private String id;
@@ -14,10 +14,10 @@ public class Grades {
     private Double grade;
     private Long studentId;
 
-    public Grades() {
+    public Grade() {
     }
 
-    public Grades(String id, int semester, String subject, Integer term, Double grade, Long studentId) {
+    public Grade(String id, int semester, String subject, Integer term, Double grade, Long studentId) {
         this.id = id;
         this.semester = semester;
         this.subject = subject;
