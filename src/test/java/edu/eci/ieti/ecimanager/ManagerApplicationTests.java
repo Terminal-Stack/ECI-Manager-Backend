@@ -1,4 +1,4 @@
-package edu.eci.ieti.Main;
+package edu.eci.ieti.ecimanager;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

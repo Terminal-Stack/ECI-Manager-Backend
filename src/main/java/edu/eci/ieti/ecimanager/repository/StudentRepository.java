@@ -10,7 +10,6 @@ import java.util.Optional;
  * @author anrodriguez
  */
 @Repository
-public interface StudentRepository extends MongoRepository<Student, String> {
+public interface StudentRepository extends MongoRepository<Student, Long> {
 
-    Optional<Student> findByCollegeId(Long collegeId);
 }
