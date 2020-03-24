@@ -4,9 +4,14 @@ import edu.eci.ieti.ecimanager.controller.NewsController;
 import edu.eci.ieti.ecimanager.model.News;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
+import org.springframework.stereotype.Component;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
+/**
+ * @author Daniel Vela
+ */
+@Component
 public class NewsRepresentationModelAssembler implements RepresentationModelAssembler<News, EntityModel<News>> {
 
     @Override
