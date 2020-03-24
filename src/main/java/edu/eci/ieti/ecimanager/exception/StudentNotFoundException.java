@@ -6,4 +6,8 @@ public class StudentNotFoundException extends RuntimeException {
         super("Could not find student " + id);
     }
 
+    public StudentNotFoundException(String email) {
+        super("Could not find student with email " + email);
+    }
+
 }
