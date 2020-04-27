@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
+@RestController
 @RequestMapping(value = "students")
 public class StudentController {
 

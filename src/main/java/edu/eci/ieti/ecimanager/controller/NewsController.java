@@ -22,6 +22,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 @RestController
 @RequestMapping(value = "news")
+@CrossOrigin(origins = {"http://localhost:3000"})
 public class NewsController {
 
     @Autowired

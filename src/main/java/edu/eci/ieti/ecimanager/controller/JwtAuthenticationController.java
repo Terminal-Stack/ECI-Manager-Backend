@@ -22,6 +22,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = {"http://localhost:3000"})
 public class JwtAuthenticationController {
 
     @Value("${jwt.http.request.header}")
