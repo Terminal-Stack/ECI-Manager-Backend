@@ -3,36 +3,23 @@ package edu.eci.ieti.ecimanager.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "students")
-public class Student implements User {
+@Document(collection = "employee")
+public class Employee implements User {
     @Id
-    private Long collegeId;
     private Long personalId;
     private String email;
     private String password;
     private String name;
-    private String faculty;
     private Role role;
 
-    public Student(Long collegeId, String email, String name, String password, Long personalId, String faculty, Role role) {
-        this.collegeId = collegeId;
+    public Employee(String email, String name, String password, Long personalId, Role role) {
         this.personalId = personalId;
         this.email = email;
         this.password = password;
         this.name = name;
-        this.faculty = faculty;
-        this.role = role;
     }
 
-    public Student() {
-    }
-
-    public Long getCollegeId() {
-        return collegeId;
-    }
-
-    public void setCollegeId(Long collegeId) {
-        this.collegeId = collegeId;
+    public Employee() {
     }
 
     public Long getPersonalId() {
@@ -67,14 +54,7 @@ public class Student implements User {
         this.name = name;
     }
 
-    public String getFaculty() {
-        return faculty;
-    }
-
-    public void setFaculty(String faculty) {
-        this.faculty = faculty;
-    }
-
+    @Override
     public Role getRole() {
         return role;
     }
