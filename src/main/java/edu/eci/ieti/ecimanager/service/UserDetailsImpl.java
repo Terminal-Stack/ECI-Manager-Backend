@@ -1,32 +1,33 @@
 package edu.eci.ieti.ecimanager.service;
 
-import edu.eci.ieti.ecimanager.model.Student;
+import edu.eci.ieti.ecimanager.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Collections;
 
 public class UserDetailsImpl implements UserDetails {
 
-    private Student student;
+    private User user;
 
-    UserDetailsImpl(Student student) {
-        this.student = student;
+    UserDetailsImpl(User user) {
+        this.user = user;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return Collections.singletonList(user.getRole());
     }
 
     @Override
     public String getUsername() {
-        return student.getEmail();
+        return user.getEmail();
     }
 
     @Override
     public String getPassword() {
-        return student.getPassword();
+        return user.getPassword();
     }
 
     @Override
