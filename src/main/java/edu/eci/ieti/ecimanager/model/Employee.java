@@ -4,15 +4,14 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "employee")
-public class Employee implements User {
+public class Employee {
     @Id
     private Long personalId;
     private String email;
     private String password;
     private String name;
-    private Role role;
 
-    public Employee(String email, String name, String password, Long personalId, Role role) {
+    public Employee(String email, String name, String password, Long personalId) {
         this.personalId = personalId;
         this.email = email;
         this.password = password;
@@ -54,12 +53,4 @@ public class Employee implements User {
         this.name = name;
     }
 
-    @Override
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
 }
