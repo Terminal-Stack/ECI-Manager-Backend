@@ -36,9 +36,14 @@ public class StudentController {
         return new CollectionModel<>(students, linkTo(StudentController.class).withSelfRel());
     }
 
-    @GetMapping("/{collegeId}")
-    public EntityModel<Student> findByCollegeId(@PathVariable Long collegeId) {
-        Student student = studentRepository.findById(collegeId).orElseThrow(() -> new StudentNotFoundException(collegeId));
+    @GetMapping("{id}")
+    public EntityModel<Student> findByIdOrEmail(@PathVariable String id) {
+        if (id.contains("@")) {
+            Student student = studentRepository.findByEmail(id).orElseThrow(() -> new StudentNotFoundException(id));
+
+            return studentRepresentationModelAssembler.toModel(student);
+        }
+        Student student = studentRepository.findById(Long.parseLong(id)).orElseThrow(() -> new StudentNotFoundException(id));
 
         return studentRepresentationModelAssembler.toModel(student);
     }
