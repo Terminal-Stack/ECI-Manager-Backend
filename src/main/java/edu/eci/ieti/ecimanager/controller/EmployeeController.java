@@ -33,7 +33,7 @@ public class EmployeeController {
         List<EntityModel<Employee>> employees = employeeRepository.findAll().stream()
                 .map(employeeRepresentationModelAssembler::toModel).collect(Collectors.toList());
 
-        return new CollectionModel<>(employees, linkTo(StudentController.class).withSelfRel());
+        return new CollectionModel<>(employees, linkTo(TuitionController.class).withSelfRel());
     }
 
     @GetMapping("/{collegeId}")
