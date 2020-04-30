@@ -38,7 +38,7 @@ public class TuitionController {
 
     @GetMapping("/{studentCollegeId}")
     public EntityModel<Tuition> findByStudentCollegeId(@PathVariable Long studentCollegeId) {
-        Tuition tuition = tuitionRepository.findNyStudentCollegeId(studentCollegeId).orElseThrow(() -> new TuitionNotFoundException(studentCollegeId));
+        Tuition tuition = tuitionRepository.findByStudentCollegeId(studentCollegeId).orElseThrow(() -> new TuitionNotFoundException(studentCollegeId));
 
         return tuitionRepresentationModelAssembler.toModel(tuition);
     }
@@ -54,7 +54,7 @@ public class TuitionController {
 
     @PostMapping("/pay/{studentCollegeId}")
     public ResponseEntity<?> pay(@RequestBody Long studentCollegeId) throws URISyntaxException, TuitionNotFoundException {
-        Tuition paidTuition = tuitionRepository.findNyStudentCollegeId(studentCollegeId).map(tuition -> {
+        Tuition paidTuition = tuitionRepository.findByStudentCollegeId(studentCollegeId).map(tuition -> {
             tuition.setPaid(true);
             return tuitionRepository.save(tuition);
         }).orElseThrow(() -> new TuitionNotFoundException(studentCollegeId));
@@ -67,7 +67,7 @@ public class TuitionController {
     @PutMapping("/{studentCollegeId}")
     private ResponseEntity<EntityModel<Tuition>> update(@PathVariable Long studentCollegeId, @RequestBody Tuition newTuition)
             throws URISyntaxException {
-        Tuition updatedTuition = tuitionRepository.findNyStudentCollegeId(studentCollegeId).map(tuition -> {
+        Tuition updatedTuition = tuitionRepository.findByStudentCollegeId(studentCollegeId).map(tuition -> {
             tuition.setValue(newTuition.getValue());
             tuition.setPaid(newTuition.getPaid());
             return tuitionRepository.save(tuition);
