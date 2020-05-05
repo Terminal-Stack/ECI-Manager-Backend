@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "students")
-public class Student {
+public class Student implements User {
     @Id
     private Long collegeId;
     private Long personalId;
@@ -12,14 +12,16 @@ public class Student {
     private String password;
     private String name;
     private String faculty;
+    private Role role;
 
-    public Student(Long collegeId, String email, String name, String password, Long personalId, String faculty) {
+    public Student(Long collegeId, String email, String name, String password, Long personalId, String faculty, Role role) {
         this.collegeId = collegeId;
         this.personalId = personalId;
         this.email = email;
         this.password = password;
         this.name = name;
         this.faculty = faculty;
+        this.role = role;
     }
 
     public Student() {
@@ -71,5 +73,13 @@ public class Student {
 
     public void setFaculty(String faculty) {
         this.faculty = faculty;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -28,6 +29,9 @@ public class EmployeeController {
     @Autowired
     private EmployeeRepresentationModelAssembler employeeRepresentationModelAssembler;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @GetMapping
     public CollectionModel<EntityModel<Employee>> all() {
         List<EntityModel<Employee>> employees = employeeRepository.findAll().stream()
@@ -45,7 +49,7 @@ public class EmployeeController {
 
     @PostMapping
     public ResponseEntity<?> add(@RequestBody Employee newEmployee) throws URISyntaxException {
-        newEmployee.setPassword(newEmployee.getPassword());
+        newEmployee.setPassword(passwordEncoder.encode(newEmployee.getPassword()));
         EntityModel<Employee> entityModel = employeeRepresentationModelAssembler
                 .toModel(employeeRepository.insert(newEmployee));
 
