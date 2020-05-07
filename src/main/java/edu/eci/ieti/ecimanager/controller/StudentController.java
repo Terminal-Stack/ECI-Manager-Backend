@@ -3,6 +3,7 @@ package edu.eci.ieti.ecimanager.controller;
 import edu.eci.ieti.ecimanager.assembler.StudentRepresentationModelAssembler;
 import edu.eci.ieti.ecimanager.exception.StudentNotFoundException;
 import edu.eci.ieti.ecimanager.model.Student;
+import edu.eci.ieti.ecimanager.model.Tuition;
 import edu.eci.ieti.ecimanager.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
@@ -55,6 +56,30 @@ public class StudentController {
 
         return ResponseEntity.created(new URI(entityModel.getRequiredLink("self").expand().getHref()))
                 .body(entityModel);
+    }
+
+    @PutMapping("/addPenalty/{collegeId}")
+    public ResponseEntity<?> addPenalty(@PathVariable Long collegeId) throws URISyntaxException {
+        Student updatedStudent = studentRepository.findById(collegeId).map(student -> {
+            student.setPenalty(student.getPenalty() + 6000);
+            return studentRepository.save(student);
+        }).orElseThrow(() -> new StudentNotFoundException(collegeId));
+
+        EntityModel<Student> entityModel = studentRepresentationModelAssembler.toModel(updatedStudent);
+
+        return ResponseEntity.created(new URI(entityModel.getRequiredLink("self").expand().getHref())).body(entityModel);
+    }
+
+    @PutMapping("/payPenalty/{collegeId}")
+    public ResponseEntity<?> payPenalty(@PathVariable Long collegeId) throws URISyntaxException {
+        Student updatedStudent = studentRepository.findById(collegeId).map(student -> {
+            student.setPenalty(0);
+            return studentRepository.save(student);
+        }).orElseThrow(() -> new StudentNotFoundException(collegeId));
+
+        EntityModel<Student> entityModel = studentRepresentationModelAssembler.toModel(updatedStudent);
+
+        return ResponseEntity.created(new URI(entityModel.getRequiredLink("self").expand().getHref())).body(entityModel);
     }
 
 }

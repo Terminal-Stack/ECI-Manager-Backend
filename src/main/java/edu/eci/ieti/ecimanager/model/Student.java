@@ -13,8 +13,9 @@ public class Student implements User {
     private String name;
     private String faculty;
     private Role role;
+    private Integer penalty;
 
-    public Student(Long collegeId, String email, String name, String password, Long personalId, String faculty, Role role) {
+    public Student(Long collegeId, String email, String name, String password, Long personalId, String faculty, Role role, Integer penalty) {
         this.collegeId = collegeId;
         this.personalId = personalId;
         this.email = email;
@@ -22,6 +23,7 @@ public class Student implements User {
         this.name = name;
         this.faculty = faculty;
         this.role = role;
+        this.penalty = penalty;
     }
 
     public Student() {
@@ -82,4 +84,13 @@ public class Student implements User {
     public void setRole(Role role) {
         this.role = role;
     }
+
+    public Integer getPenalty() {
+        return penalty;
+    }
+
+    public void setPenalty(Integer penalty) {
+        this.penalty = penalty;
+    }
+
 }
