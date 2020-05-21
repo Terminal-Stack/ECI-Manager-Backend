@@ -21,7 +21,6 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 @RestController
 @RequestMapping(value = "students")
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.HEAD, RequestMethod.OPTIONS})
 public class StudentController {
 
     @Autowired
@@ -34,6 +33,7 @@ public class StudentController {
     private PasswordEncoder passwordEncoder;
 
     @GetMapping
+    @CrossOrigin(origins = "*")
     public CollectionModel<EntityModel<Student>> all() {
         List<EntityModel<Student>> students = studentRepository.findAll().stream()
                 .map(studentRepresentationModelAssembler::toModel).collect(Collectors.toList());
@@ -42,6 +42,7 @@ public class StudentController {
     }
 
     @GetMapping("/{email}")
+    @CrossOrigin(origins = "*")
     public EntityModel<Student> findByCollegeId(@PathVariable String email) {
         Student student = studentRepository.findByEmail(email).orElseThrow(() -> new StudentNotFoundException(email));
 
@@ -49,6 +50,7 @@ public class StudentController {
     }
 
     @PostMapping
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> add(@RequestBody Student newStudent) throws URISyntaxException {
         newStudent.setPassword(passwordEncoder.encode(newStudent.getPassword()));
         EntityModel<Student> entityModel = studentRepresentationModelAssembler
@@ -59,6 +61,7 @@ public class StudentController {
     }
 
     @PutMapping("/addPenalty/{collegeId}")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> addPenalty(@PathVariable Long collegeId) throws URISyntaxException {
         Student updatedStudent = studentRepository.findById(collegeId).map(student -> {
             student.setPenalty(student.getPenalty() + 6000);
@@ -71,6 +74,7 @@ public class StudentController {
     }
 
     @PutMapping("/payPenalty/{collegeId}")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> payPenalty(@PathVariable Long collegeId) throws URISyntaxException {
         Student updatedStudent = studentRepository.findById(collegeId).map(student -> {
             student.setPenalty(0);
