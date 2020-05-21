@@ -20,7 +20,6 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 @RestController
 @RequestMapping(value = "grades")
-@CrossOrigin(origins = {"http://localhost:3000", "https://eci-manager-frontend.herokuapp.com"})
 public class GradeController {
 
     @Autowired

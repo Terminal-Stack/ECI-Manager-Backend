@@ -24,7 +24,6 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 @RestController
 @RequestMapping(value = "invoices")
-@CrossOrigin(origins = {"http://localhost:3000", "https://eci-manager-frontend.herokuapp.com"})
 public class InvoiceController {
 
     @Autowired
