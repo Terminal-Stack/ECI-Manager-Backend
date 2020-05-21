@@ -24,6 +24,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 @RestController
 @RequestMapping(value = "invoices")
+@CrossOrigin(origins = "*")
 public class InvoiceController {
 
     @Autowired

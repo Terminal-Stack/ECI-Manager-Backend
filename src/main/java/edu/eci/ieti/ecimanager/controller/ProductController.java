@@ -21,6 +21,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 @RestController
 @RequestMapping(value = "products")
+@CrossOrigin(origins = "*")
 public class ProductController {
 
     @Autowired

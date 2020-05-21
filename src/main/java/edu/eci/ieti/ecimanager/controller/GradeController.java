@@ -20,6 +20,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 @RestController
 @RequestMapping(value = "grades")
+@CrossOrigin(origins = "*")
 public class GradeController {
 
     @Autowired

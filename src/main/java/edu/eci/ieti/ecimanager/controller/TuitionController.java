@@ -19,6 +19,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 @RestController
 @RequestMapping(value = "tuitions")
+@CrossOrigin(origins = "*")
 public class TuitionController {
 
     @Autowired
